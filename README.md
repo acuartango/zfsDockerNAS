@@ -5,11 +5,11 @@ Instalación UBuntu server
 - Ubuntu server minimized + third-party drivers
 
 DISCOS:
- SSD SATA 1tb
- HDD SATA 1tb
- HDD SATA 1tb
- SSD SATA 1tb
- SSD SATA 2tb
+- SSD SATA 1tb
+- HDD SATA 1tb
+- HDD SATA 1tb
+- SSD SATA 1tb
+- SSD SATA 2tb
 
 
 Instalaré después ZFS con todos los discos
