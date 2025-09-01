@@ -17,7 +17,16 @@ Instalaré después ZFS con todos los discos
 - Para que persista después del reinicio
 ```echo 'ethtool -s eth0 wol g' | sudo tee -a /etc/rc.local```
 
-# Software recomendado
+- /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
+  ethernets:
+    enp3s0:
+      dhcp4: true
+      wakeonlan: true
+      
+## Software recomendado
+
 ```
 sudo apt install bash-completion
 sudo apt install zfsutils-linux
