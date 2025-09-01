@@ -4,6 +4,14 @@ Instalación UBuntu server
 - Español
 - Ubuntu server minimized + third-party drivers
 
+DISCOS:
+SSD SATA 1tb
+HDD SATA 1tb
+HDD SATA 1tb
+SSD SATA 1tb
+SSD SATA 2tb
+
+
 Instalaré después ZFS con todos los discos
 
 ## Habilitar WOL (Arranque automático desde la red de casa)
