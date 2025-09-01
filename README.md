@@ -9,11 +9,17 @@ Instalaré después ZFS con todos los discos
 ## Habilitar WOL (Arranque automático desde la red de casa)
 
 - Verificar soporte WOL en la interfaz de red
-'''sudo ethtool eth0 | grep Wake-on'''
+```sudo ethtool eth0 | grep Wake-on```
 
 - Habilitar WOL
-'''sudo ethtool -s eth0 wol g'''
+```sudo ethtool -s eth0 wol g```
 
 - Para que persista después del reinicio
 ```echo 'ethtool -s eth0 wol g' | sudo tee -a /etc/rc.local```
 
+# Software recomendado
+```
+sudo apt install bash-completion
+sudo apt install zfsutils-linux
+
+```
