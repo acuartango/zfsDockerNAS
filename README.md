@@ -26,13 +26,15 @@ Instalaré después ZFS con todos los discos
 ```echo 'ethtool -s eth0 wol g' | sudo tee -a /etc/rc.local```
 
 - /etc/netplan/50-cloud-init.yaml
+```
 network:
   version: 2
   ethernets:
     enp3s0:
       dhcp4: true
       wakeonlan: true
-      
+```
+
 ## Software recomendado
 
 ```
