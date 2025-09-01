@@ -28,7 +28,35 @@ network:
 ## Software recomendado
 
 ```
-sudo apt install bash-completion
-sudo apt install zfsutils-linux
+sudo apt install zfsutils-linux lshw htop bash-completion hdparm sudo smartmontools 
+
+
 
 ```
+
+## ZFS
+
+- Creo un simil a RAID1 con ZFS:
+```
+wipefs -a /dev/sda
+wipefs -a /dev/sdd
+zpool create -f datos mirror /dev/sda /dev/sdd
+zfs set compression=lz4 datos
+
+# Para que al reiniciar se automonten las particiones ZFS:
+systemctl enable zfs-import-cache
+systemctl enable zfs-mount
+```
+
+- Creo un RAID 0 con mdadm y luego lo meto en ZFS:
+```
+mdadm --create --verbose /dev/md0 --level=0 --raid-devices=3 /dev/sdb /dev/sdc /dev/sde
+# Para que se automonte al inicio
+udo mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+sudo update-initramfs -u
+# Creamos sobre el un pool ZFS:
+zpool create multimedia /dev/md0
+zfs set compression=lz4 multimedia
+```
+
+
