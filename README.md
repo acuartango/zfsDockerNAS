@@ -1,6 +1,9 @@
 # zfsDockerNAS
 
-Instalación UBuntu server
+La idea es montar una NAS para mi casa con servicios sobre la red local. Como no estoy 24x7 horas en casa mi idea es poder arrancar el servidor desde un icono de mi móvil y apagarlo del mismo modo. Todo funcionará con la idea de poder apagarse sin problema a demanda.
+
+
+## Instalación UBuntu server
 - Español
 - Ubuntu server minimized + third-party drivers
 
