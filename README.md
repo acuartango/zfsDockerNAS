@@ -2,6 +2,21 @@
 
 La idea es montar una NAS para mi casa con servicios sobre la red local. Como no estoy 24x7 horas en casa mi idea es poder arrancar el servidor desde un icono de mi móvil y apagarlo del mismo modo. Todo funcionará con la idea de poder apagarse sin problema a demanda.
 
+## Arranque automático WOL (Wake On LAN)
+
+Para habilitar el Wake on LAN debes realizar dos pasos
+
+1. Consultar el manual de tu BIOS ya que cada una habilita WOL de manera distinta y seguir esas instrucciones.
+2. En Ubuntu server como se usa netplan:
+```
+cat /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
+  ethernets:
+    enp3s0:
+      dhcp4: true
+      **wakeonlan: true**
+```
 
 ## Instalación UBuntu server
 - Español
@@ -42,9 +57,6 @@ network:
 
 ```
 sudo apt install zfsutils-linux lshw htop bash-completion hdparm sudo smartmontools 
-
-
-
 ```
 
 ## ZFS
