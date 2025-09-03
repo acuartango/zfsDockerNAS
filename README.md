@@ -74,7 +74,17 @@ zpool create multimedia /dev/md0
 zfs set compression=lz4 multimedia
 
 ```
+## Migrar datos desde otro ZFS
 
+- En el origen
+1. Crear snapshot
+```
+sudo zfs snapshot datos@migracion
+```
+2. Enviar los datos al destino
+```
+sudo zfs send datos@migracion | pv | ssh nugbe@192.168.1.139 sudo zfs receive datos
+```
 
 ## Instalar Docker
 ```
