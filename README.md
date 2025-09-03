@@ -15,7 +15,7 @@ network:
   ethernets:
     enp3s0:
       dhcp4: true
-      **wakeonlan: true**
+      wakeonlan: true
 ```
 
 ## Instalación UBuntu server
