@@ -2,6 +2,10 @@
 
 La idea es montar una NAS para mi casa con servicios sobre la red local. Como no estoy 24x7 horas en casa mi idea es poder arrancar el servidor desde un icono de mi móvil y apagarlo del mismo modo. Todo funcionará con la idea de poder apagarse sin problema a demanda.
 
+Usar ZFS tiene muchas ventajas, pero muchas. Poder usar snapshots y copierlos por red... no tiene precio. Además que funciona como sistemas RAID para mejorar bien la velocidad de acceso, bien la redundancia, bien ambas.
+
+En este caso como tenía por casa una mezcolanza de discos SSD SATA y HDDD SATA, he optado por un "RAID 1" (ZFS no lo llama RAID ya que lo que ZFS hace no es exactamente lo mismo) para datos personales y fotos y un "RAID 0" (mejora la velocidad de acceso sin redundancia) para archivos multimedia de video y audio que quiero tener disponibles pero que si pierdo podría volver a descargarlos.
+
 ## Arranque automático WOL (Wake On LAN)
 
 Para habilitar el Wake on LAN debes realizar dos pasos. La idea es que en cada apagado informes a la tarjeta de red de que no se apague del todo para poder recibir "paquetes mágicos" que al detectarlos la placa arranca el PC.
