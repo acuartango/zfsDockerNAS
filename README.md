@@ -4,7 +4,7 @@ La idea es montar una NAS para mi casa con servicios sobre la red local. Como no
 
 ## Arranque automático WOL (Wake On LAN)
 
-Para habilitar el Wake on LAN debes realizar dos pasos
+Para habilitar el Wake on LAN debes realizar dos pasos. La idea es que en cada apagado informes a la tarjeta de red de que no se apague del todo para poder recibir "paquetes mágicos" que al detectarlos la placa arranca el PC.
 
 1. Consultar el manual de tu BIOS ya que cada una habilita WOL de manera distinta y seguir esas instrucciones.
 2. En Ubuntu server como se usa netplan:
