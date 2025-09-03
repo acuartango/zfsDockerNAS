@@ -60,13 +60,19 @@ systemctl enable zfs-mount
 
 - Creo un RAID 0 con mdadm y luego lo meto en ZFS:
 ```
+
+
+wipefs -a /dev/sdb
+wipefs -a /dev/sdc
+wipefs -a /dev/sde
 mdadm --create --verbose /dev/md0 --level=0 --raid-devices=3 /dev/sdb /dev/sdc /dev/sde
-# Para que se automonte al inicio
-udo mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+cat /proc/mdstat
+mdadm --detail --scan >> /etc/mdadm/mdadm.conf
 sudo update-initramfs -u
 # Creamos sobre el un pool ZFS:
 zpool create multimedia /dev/md0
 zfs set compression=lz4 multimedia
+
 ```
 
 
