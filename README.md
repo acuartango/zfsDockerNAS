@@ -76,6 +76,8 @@ zfs set compression=lz4 multimedia
 ```
 ## Migrar datos desde otro ZFS
 
+Este método es el más veloz para copiar por red una unidad ZFS a otro servidor
+
 - En el origen
 1. Crear snapshot
 ```
