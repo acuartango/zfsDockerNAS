@@ -103,3 +103,59 @@ newgrp docker
 
 ```
 
+## Contenedores
+
+La idea es montar una homepage bajo nginx para poner una simple página de acceso a todos los servicios del servidor para simplificar su uso.
+
+Contenedores a usar
+ amule (descargas de internet)
+ HomeAssistant (Para monitorizar temperaturas, controlar focos y dispositivos... domotica de mi casa)
+ immich (Portal avanzado de fotos, detección de caras, geolocalización, etc.)
+ minidlna (Para compartir imágenes y vídeos por mi red local)
+ nginx (Servidor web con la página de inicio que hemos comentado)
+ Portainer (Portal con todos estos conteneodres para parar/arrancar/monitorizar estos servicios o poner más)
+ qbittorrent (descargas de internet)
+ samba (Compartición de archivos de la NAS por la red local)
+ wetty (Acceso ssh desde el propio servidor web)
+
+
+### amule docker-compose.yml
+
+```
+services:
+  amule:
+    image: ngosang/amule:latest
+    container_name: amule
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - WEBUI_PWD=nugbe
+    volumes:
+      - /datos/docker/config/amule:/home/amule/.aMule
+      - /multimedia/INCOMING:/incoming
+      - /datos/docker/logs/amule:/temp
+    ports:
+      - 4711:4711       # Web UI
+      - 4662:4662/tcp   # ED2K TCP
+      - 4665:4665/udp   # ED2K UDP (optional)
+      - 4672:4672/udp   # ED2K UDP (optional)
+    restart: unless-stopped
+```
+
+### HomeAssistant
+```
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
+```
+
+
+
+
