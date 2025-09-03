@@ -466,3 +466,26 @@ services:
     environment:
       - TERM=xterm-256color
 ```
+
+### jellyfin
+
+jellyfin Servidoir Multimedia DLNA con portal y apps para LG, android etc.
+
+```
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:1000   # cambia si tu usuario no es el 1000
+    network_mode: bridge
+    ports:
+      - 8096:8096        # interfaz web http://IP:8096
+      - 8920:8920        # opcional: HTTPS si activas certificados
+    volumes:
+      - /multimedia/pelis:/media/pelis:ro     # películas
+      - /multimedia/series:/media/series:ro   # series
+      - /multimedia/music:/media/music:ro     # música
+      - ./config:/config
+      - ./cache:/cache
+    restart: unless-stopped
+```
