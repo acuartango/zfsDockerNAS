@@ -504,9 +504,10 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
 ```
-La salida del contenedor doker debe ser la misma que al ejecutar:
+La salida del contenedor doker debe ser la misma que al ejecutar el comando:
+```
 nvidia-smi
-nugbe@nugbenas:/datos/docker/compose/immich$ nvidia-smi
+```
 ```
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |
