@@ -489,3 +489,13 @@ services:
       - ./cache:/cache
     restart: unless-stopped
 ```
+
+
+
+### Aceleración por hardware NVIDIA
+
+Si instalamos el componente para Docker de Nvidia, podremos usar en los contenedores la aceleración por GPU:
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+
