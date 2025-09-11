@@ -1,20 +1,18 @@
 # zfsDockerNAS
 
-La idea es montar un servidor NAS en casa, que es básicamente un ordenador preparado para guardar archivos y compartirlos en la red local. Así puedo tener centralizadas mis fotos, vídeos y documentos, en lugar de tenerlos repartidos en varios dispositivos.
+El proyecto consiste en montar un NAS doméstico con servicios accesibles en la red local. El encendido y apagado se gestionará de forma remota desde un dispositivo móvil, garantizando siempre un apagado ordenado para evitar inconsistencias en los datos.
 
-Como no siempre estoy en casa, quiero poder encender y apagar el servidor desde el móvil, con un simple botón, y que al apagarse lo haga de manera segura sin riesgo de perder datos.
+El almacenamiento se gestionará mediante ZFS (Zettabyte File System), que integra en una única capa funciones de gestor de volúmenes, RAID y sistema de archivos. Sus principales ventajas son:
 
-Para gestionar los discos voy a usar ZFS, un sistema de archivos muy avanzado. Lo especial de ZFS es que combina varias funciones en una sola herramienta:
+- Checksumming de todos los bloques, que asegura la integridad de los datos frente a corrupciones silenciosas.
+- Copy-on-write, que hace que cada escritura sea atómica y evita inconsistencias.
+- Snapshots y send/receive, permitiendo crear instantáneas casi instantáneas y transferirlas de manera eficiente entre sistemas.
+- Pools de almacenamiento (zpools) compuestos por vdevs que pueden configurarse en espejo (mirror), en bandas (striped), con paridad (RAID-Z), etc.
+- Optimización de rendimiento mediante ARC (Adaptive Replacement Cache en RAM), L2ARC (caché adicional en SSD) y ZIL/SLOG (registro de intención de escritura).
 
-- Protege la información con un sistema de comprobación que evita corrupciones.
-- Permite hacer “fotografías” instantáneas de los datos (snapshots) que se pueden recuperar en segundos o enviar a otro equipo por la red.
-- Puede unir varios discos para que trabajen juntos, ya sea para ganar seguridad (haciendo copias en paralelo) o para ganar velocidad (dividiendo el trabajo entre ellos).
-
-En mi caso, como tengo una mezcla de discos SSD y discos duros tradicionales (HDD), los he organizado así:
-
-- Para las fotos y documentos personales, he configurado un sistema de discos que guarda cada archivo duplicado en dos unidades (algo parecido a un RAID 1). Así, si un disco falla, no pierdo nada.
-- Para los archivos multimedia (películas, música…), he configurado un sistema que reparte los datos entre discos para ir más rápido (similar a un RAID 0). Aquí no hay copia de seguridad, pero no me importa porque son archivos que podría volver a descargar.
-
+Con el hardware disponible (mezcla de SSD SATA y HDD SATA), la configuración se ha definido del siguiente modo:
+- Mirror vdev (equivalente funcional a RAID 1) para el almacenamiento de datos personales y fotografías, priorizando redundancia y seguridad.
+- Striped vdev (similar a RAID 0) para contenidos multimedia (vídeo y audio), priorizando velocidad de acceso a costa de no disponer de tolerancia a fallos.
 
 ## Arranque automático WOL (Wake On LAN)
 
