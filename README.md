@@ -6,14 +6,14 @@ Como no siempre estoy en casa, quiero poder encender y apagar el servidor desde 
 
 Para gestionar los discos voy a usar ZFS, un sistema de archivos muy avanzado. Lo especial de ZFS es que combina varias funciones en una sola herramienta:
 
- Protege la información con un sistema de comprobación que evita corrupciones.
- Permite hacer “fotografías” instantáneas de los datos (snapshots) que se pueden recuperar en segundos o enviar a otro equipo por la red.
- Puede unir varios discos para que trabajen juntos, ya sea para ganar seguridad (haciendo copias en paralelo) o para ganar velocidad (dividiendo el trabajo entre ellos).
+- Protege la información con un sistema de comprobación que evita corrupciones.
+- Permite hacer “fotografías” instantáneas de los datos (snapshots) que se pueden recuperar en segundos o enviar a otro equipo por la red.
+- Puede unir varios discos para que trabajen juntos, ya sea para ganar seguridad (haciendo copias en paralelo) o para ganar velocidad (dividiendo el trabajo entre ellos).
 
 En mi caso, como tengo una mezcla de discos SSD y discos duros tradicionales (HDD), los he organizado así:
 
- Para las fotos y documentos personales, he configurado un sistema de discos que guarda cada archivo duplicado en dos unidades (algo parecido a un RAID 1). Así, si un disco falla, no pierdo nada.
- Para los archivos multimedia (películas, música…), he configurado un sistema que reparte los datos entre discos para ir más rápido (similar a un RAID 0). Aquí no hay copia de seguridad, pero no me importa porque son archivos que podría volver a descargar.
+- Para las fotos y documentos personales, he configurado un sistema de discos que guarda cada archivo duplicado en dos unidades (algo parecido a un RAID 1). Así, si un disco falla, no pierdo nada.
+- Para los archivos multimedia (películas, música…), he configurado un sistema que reparte los datos entre discos para ir más rápido (similar a un RAID 0). Aquí no hay copia de seguridad, pero no me importa porque son archivos que podría volver a descargar.
 
 
 ## Arranque automático WOL (Wake On LAN)
