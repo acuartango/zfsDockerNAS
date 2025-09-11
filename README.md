@@ -1,10 +1,20 @@
 # zfsDockerNAS
 
-La idea es montar una NAS para mi casa con servicios sobre la red local. Como no estoy 24x7 horas en casa mi idea es poder arrancar el servidor desde un icono de mi móvil y apagarlo del mismo modo. Todo funcionará con la idea de poder apagarse sin problema a demanda.
+La idea es montar un servidor NAS en casa, que es básicamente un ordenador preparado para guardar archivos y compartirlos en la red local. Así puedo tener centralizadas mis fotos, vídeos y documentos, en lugar de tenerlos repartidos en varios dispositivos.
 
-Usar ZFS tiene muchas ventajas, pero muchas. Poder usar snapshots y copierlos por red... no tiene precio. Además que funciona como sistemas RAID para mejorar bien la velocidad de acceso, bien la redundancia, bien ambas.
+Como no siempre estoy en casa, quiero poder encender y apagar el servidor desde el móvil, con un simple botón, y que al apagarse lo haga de manera segura sin riesgo de perder datos.
 
-En este caso como tenía por casa una mezcolanza de discos SSD SATA y HDDD SATA, he optado por un "RAID 1" (ZFS no lo llama RAID ya que lo que ZFS hace no es exactamente lo mismo) para datos personales y fotos y un "RAID 0" (mejora la velocidad de acceso sin redundancia) para archivos multimedia de video y audio que quiero tener disponibles pero que si pierdo podría volver a descargarlos.
+Para gestionar los discos voy a usar ZFS, un sistema de archivos muy avanzado. Lo especial de ZFS es que combina varias funciones en una sola herramienta:
+
+ Protege la información con un sistema de comprobación que evita corrupciones.
+ Permite hacer “fotografías” instantáneas de los datos (snapshots) que se pueden recuperar en segundos o enviar a otro equipo por la red.
+ Puede unir varios discos para que trabajen juntos, ya sea para ganar seguridad (haciendo copias en paralelo) o para ganar velocidad (dividiendo el trabajo entre ellos).
+
+En mi caso, como tengo una mezcla de discos SSD y discos duros tradicionales (HDD), los he organizado así:
+
+ Para las fotos y documentos personales, he configurado un sistema de discos que guarda cada archivo duplicado en dos unidades (algo parecido a un RAID 1). Así, si un disco falla, no pierdo nada.
+ Para los archivos multimedia (películas, música…), he configurado un sistema que reparte los datos entre discos para ir más rápido (similar a un RAID 0). Aquí no hay copia de seguridad, pero no me importa porque son archivos que podría volver a descargar.
+
 
 ## Arranque automático WOL (Wake On LAN)
 
